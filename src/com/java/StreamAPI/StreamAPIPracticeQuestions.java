@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class FindDuplicateElementsStreams {
+public class StreamAPIPracticeQuestions {
     public static void main(String[] args) {
         List<String> names = Arrays.asList("John", "Jane", "John", "Doe", "Jane");
         Set<String> set = new HashSet<>();
@@ -60,6 +60,14 @@ public class FindDuplicateElementsStreams {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
         System.out.println(collect1);
+
+        List<String> wordsList = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+        Map<String, Long> frequencyMap2 = wordsList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(frequencyMap2);
+
+        String name = "hello world";
+        Map<Character, Long> frequencyMap3 = name.chars().filter(c -> c != ' ').mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(frequencyMap3);
     }
 
 }
